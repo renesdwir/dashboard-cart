@@ -1,50 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Link from "next/link";
+import { SidebarProps } from "../lib/interface";
+import { DashboardIcon, LeftIcon, ProductsIcon, RightIcon, ShoppingCartIcon } from "../icons";
+import { SidebarButton, SidebarContainer, SidebarMenu, SidebarMenuItem, Text } from "./styledcomponent/sidebar";
 
-const SidebarContainer = styled.div<{ isOpen: boolean }>`
-  width: ${(props) => (props.isOpen ? "200px" : "50px")};
-  background-color: #ccc;
-  transition: width 0.3s ease-in-out;
-`;
-
-const SidebarButton = styled.button`
-  display: block;
-  width: 100%;
-  height: 50px;
-  border: none;
-  background-color: #333;
-  color: #fff;
-  font-size: 1.2rem;
-`;
-
-const SidebarMenu = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const SidebarMenuItem = styled.li`
-  padding: 10px;
-  font-size: 1rem;
-`;
-
-const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
-
+const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
   return (
     <SidebarContainer isOpen={isOpen}>
-      <SidebarButton onClick={toggleSidebar}>
-        {isOpen ? "Close" : "Open"}
-      </SidebarButton>
+      <SidebarButton onClick={toggleSidebar}>{isOpen ? <LeftIcon /> : <RightIcon />}</SidebarButton>
       <SidebarMenu>
-        <SidebarMenuItem>Menu 1</SidebarMenuItem>
-        <SidebarMenuItem>Menu 2</SidebarMenuItem>
-        <SidebarMenuItem>Menu 3</SidebarMenuItem>
-        <SidebarMenuItem>Menu 4</SidebarMenuItem>
+        <SidebarMenuItem href="/" isOpen={isOpen}>
+          <DashboardIcon />
+          <Text isOpen={isOpen}>Dashboard</Text>
+        </SidebarMenuItem>
+        <SidebarMenuItem href="/products" isOpen={isOpen}>
+          <ProductsIcon />
+          <Text isOpen={isOpen}>Products</Text>
+        </SidebarMenuItem>
+        <SidebarMenuItem href="/carts" isOpen={isOpen}>
+          <ShoppingCartIcon />
+          <Text isOpen={isOpen}>Carts</Text>
+        </SidebarMenuItem>
       </SidebarMenu>
     </SidebarContainer>
   );
