@@ -1,18 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import Sidebar from "./sidebar";
-import styled from "styled-components";
+import { Container, Content } from "./styledcomponent/layout";
 
-const Container = styled.div`
-  background: white;
-`;
-const Content = styled.div<{ isOpen: boolean }>`
-  width: ${(props) =>
-    props.isOpen ? "calc(100vw - 280px)" : "calc(100vw - 75px)"};
-  transition: width 0.3s ease-in-out;
-  background: white;
-  margin-left: ${(props) => (props.isOpen ? "280px" : "75px")};
-  float: right;
-`;
 const Layout = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
 
