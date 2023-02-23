@@ -19,6 +19,8 @@ export const SidebarButton = styled.button`
   background-color: #333;
   color: #fff;
   font-size: 1.2rem;
+  margin: 0;
+  cursor: pointer;
 `;
 
 export const SidebarMenu = styled.ul`
@@ -32,6 +34,7 @@ export const SidebarMenuItem = styled(Link)<{ isOpen: boolean }>`
   font-size: 1rem;
   display: flex;
   align-items: center;
+  margin: 0;
   justify-content: ${(props) => (props.isOpen ? "start" : "center")};
   &:hover {
     background: #6913d8;
@@ -39,11 +42,13 @@ export const SidebarMenuItem = styled(Link)<{ isOpen: boolean }>`
     color: white;
   }
   &.active {
-    outline: 2px solid white;
+    background: #6913d8;
+    color: white;
   }
 `;
 export const Text = styled.p<{ isOpen: boolean }>`
   display: ${(props) => (props.isOpen ? "inline-block" : "none")};
   margin-left: 8px;
   font-size: 20px;
+  transition-delay: 2s;
 `;

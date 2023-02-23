@@ -10,4 +10,7 @@ export const Content = styled.div<{ isOpen: boolean }>`
   margin-left: ${(props) => (props.isOpen ? "280px" : "75px")};
   float: right;
   padding: 20px;
+  @media (max-width: 768px) {
+    width: calc(100vw - 75px);
+  }
 `;
