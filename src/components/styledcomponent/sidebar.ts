@@ -50,5 +50,4 @@ export const Text = styled.p<{ isOpen: boolean }>`
   display: ${(props) => (props.isOpen ? "inline-block" : "none")};
   margin-left: 8px;
   font-size: 20px;
-  transition-delay: 2s;
 `;
