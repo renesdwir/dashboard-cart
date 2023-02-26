@@ -117,6 +117,12 @@ export default function Products() {
           maxPrice: maximumPrice,
         });
       }
+      setPagination((prev) => {
+        return {
+          ...prev,
+          page: 1,
+        };
+      });
       setNewData(filteredData);
     }
   }, [data, dataLocalStorage]);
