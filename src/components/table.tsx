@@ -1,5 +1,9 @@
+import { Cart, ProductCartDetail } from "@/pages/carts/cartInterface";
+import router from "next/router";
 import React from "react";
 import styled from "styled-components";
+import { Product } from "../../pages/products/productInterface";
+import { ViewIcon } from "../icons";
 
 const Container = styled.section`
   overflow-x: auto;
@@ -43,90 +47,88 @@ const Table = styled.table`
     background-color: #f4f6fb;
   }
 `;
-function TableComponent() {
+const BtnView = styled.button`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background: #48c4ff;
+  color: white;
+  &:hover {
+    background: #6f9aff;
+  }
+`;
+const RefactorViewIcon = styled(ViewIcon)`
+  text-align: center;
+`;
+const TableData = styled.td`
+  text-align: ${(props) => props.align};
+`;
+
+function TableComponent({
+  datas,
+  TableHead,
+}: {
+  datas: Product[] | Cart[] | ProductCartDetail[] | undefined;
+  TableHead: string[];
+}) {
   return (
     <Container>
       <Table>
         <thead>
           <tr>
-            <th>Product Name</th>
-            <th>Brand</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Category</th>
+            {TableHead?.map((head) => {
+              return <th key={head}>{head}</th>;
+            })}
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
-          <tr>
-            <td>iPhone 14 Pro Max</td>
-            <td>Apple</td>
-            <td>1000</td>
-            <td>100</td>
-            <td>Smartphone</td>
-          </tr>
+          {datas &&
+            datas.map((data) => {
+              if ("brand" in data) {
+                // data is a Product
+                return (
+                  <tr key={data.id}>
+                    <td>{data.title}</td>
+                    <td>{data.brand}</td>
+                    <td>${data.price}</td>
+                    <td>{data.stock}</td>
+                    <td>{data.category}</td>
+                  </tr>
+                );
+              } else if ("discountPercentage" in data) {
+                // data is a Cart
+                return (
+                  <tr key={data.id}>
+                    <TableData align="left">{data.title}</TableData>
+                    <TableData align="left">{data.price}</TableData>
+                    <TableData align="left">{data.quantity}</TableData>
+                    <TableData align="left">{data.total}</TableData>
+                    <TableData align="left">{data.discountPercentage}%</TableData>
+                    <TableData align="left">${data.discountedPrice}</TableData>
+                  </tr>
+                );
+              } else {
+                // data is a Cart
+                return (
+                  <tr key={data.id}>
+                    <TableData align="left">{data.userId}</TableData>
+                    <TableData align="left">{data.totalProducts}</TableData>
+                    <TableData align="left">{data.totalQuantity}</TableData>
+                    <TableData align="left">${data.total}</TableData>
+                    <TableData align="left">
+                      <BtnView onClick={() => router.push(`/carts/${data.id}`)}>
+                        <RefactorViewIcon />
+                      </BtnView>
+                    </TableData>
+                  </tr>
+                );
+              }
+            })}
         </tbody>
       </Table>
     </Container>
