@@ -4,7 +4,7 @@ import Table from "@/src/components/table";
 import Pagination from "@/src/components/pagination";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCart } from "../api/products";
-import { Cart, CartInterface } from "./cartInterface";
+import { Cart, CartInterface } from "../../interface/cartInterface";
 interface paginationInterface {
   limit: number;
   page: number;

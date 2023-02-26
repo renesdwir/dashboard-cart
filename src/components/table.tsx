@@ -1,8 +1,8 @@
-import { Cart, ProductCartDetail } from "@/pages/carts/cartInterface";
+import { Cart, ProductCartDetail } from "@/interface/cartInterface";
 import router from "next/router";
 import React from "react";
 import styled from "styled-components";
-import { Product } from "../../pages/products/productInterface";
+import { Product } from "../../interface/productInterface";
 import { ViewIcon } from "../icons";
 
 const Container = styled.section`

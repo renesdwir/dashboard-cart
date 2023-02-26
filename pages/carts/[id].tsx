@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 import { fetchCartDetail, fetchUser } from "../api/products";
-import { CartDetail, UserInterface } from "./cartInterface";
+import { CartDetail, UserInterface } from "../../interface/cartInterface";
 
 const BackWrapper = styled.div`
   display: flex;

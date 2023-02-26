@@ -3,7 +3,7 @@ import { Inter } from "@next/font/google";
 import { Title as TitleComp } from "@/src/components/styledcomponent/global";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProduct } from "./api/products";
-import { ProductInterface } from "./products/productInterface";
+import { ProductInterface } from "../interface/productInterface";
 import { useEffect, useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 import {

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Title } from "@/src/components/styledcomponent/global";
 import SearchPanel from "@/src/components/searchPanel";
 import { useEffect, useState, SetStateAction } from "react";
-import { Product, ProductInterface } from "@/pages/products/productInterface";
+import { Product, ProductInterface } from "@/interface/productInterface";
 import { fetchProduct } from "../api/products";
 import { StyledInput } from "@/src/components/styledcomponent/styledinput";
 
