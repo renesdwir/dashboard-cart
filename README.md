@@ -5,6 +5,7 @@
 * styled-components
 * chartJs
 * react-icons
+* DummyJSON
 
 ## Getting Started
 
